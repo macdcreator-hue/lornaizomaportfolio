@@ -136,6 +136,19 @@ strong { font-weight: 600; color: var(--ink); }
   .hero-float-card { bottom: 2rem; right: 1rem; }
   .hero-text { order: 1; padding: clamp(2rem, 5vw, 4rem) 0px; }
 }
+/* ── SKILLS ──────────────────────────────────────────────── */
+.skills-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+@media (min-width: 768px) { .skills-grid { grid-template-columns: 3fr 2fr; } }
+.skills-card { background: var(--white); border: 1px solid var(--lilac-100); border-radius: var(--radius-lg); padding: clamp(1.5rem, 4vw, 2rem); }
+.skills-card-heading { font-family: var(--font-body); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lilac-600); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+.skills-card-heading::after { content: ''; flex: 1; height: 1px; background: var(--lilac-100); }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-tag { font-size: 0.82rem; font-weight: 500; color: var(--lilac-700); background: var(--lilac-50); border: 1px solid var(--lilac-200); padding: 0.4em 1em; border-radius: var(--radius-full); transition: background var(--t), color var(--t), border-color var(--t), transform var(--t); cursor: default; }
+.skill-tag:hover { background: var(--lilac-500); color: var(--white); border-color: var(--lilac-500); transform: translateY(-2px); }
+.soft-skills-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.soft-skill-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--ink-light); font-weight: 500; line-height: 1.5; }
+.soft-skill-dot { width: 8px; height: 8px; min-width: 8px; border-radius: 50%; background-image: linear-gradient(135deg, #9B72C8, #6B4A9B); background-color: #9B72C8; }
+
 .services-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 @media (min-width: 600px) {
   .services-grid { grid-template-columns: 1fr 1fr; }
@@ -294,6 +307,7 @@ strong { font-weight: 600; color: var(--ink); }
 
       <ul class="nav-links" id="nav-menu" role="list">
         <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#proof-of-work" class="nav-link">Proof of Work</a></li>
         <li><a href="#tools" class="nav-link">Tools</a></li>
         <li><a href="#experience" class="nav-link">Experience</a></li>
@@ -417,6 +431,55 @@ strong { font-weight: 600; color: var(--ink); }
             <h3>SEO Reporting &amp; Analytics</h3>
             <p>I translate your SEO data into a clear story of growth and what it all means for your business.</p>
           </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills" class="section section-tinted skills" aria-labelledby="skills-heading">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">What I Bring</span>
+          <h2 id="skills-heading" class="section-heading">Skills &amp; Expertise</h2>
+          <p class="section-sub">The full range of capabilities I bring to every project.</p>
+        </header>
+
+        <div class="skills-grid reveal">
+
+          <div class="skills-card">
+            <p class="skills-card-heading">Hard Skills</p>
+            <div class="skill-tags">
+              <span class="skill-tag">SEO Strategy &amp; Auditing</span>
+              <span class="skill-tag">Keyword Research &amp; Competitor Analysis</span>
+              <span class="skill-tag">On-Page SEO Optimisation</span>
+              <span class="skill-tag">AI &amp; GEO Optimisation</span>
+              <span class="skill-tag">Content Strategy &amp; Planning</span>
+              <span class="skill-tag">SEO Content Writing &amp; Copywriting</span>
+              <span class="skill-tag">Website Copywriting</span>
+              <span class="skill-tag">Brand Storytelling</span>
+              <span class="skill-tag">SEO Reporting &amp; Analytics</span>
+              <span class="skill-tag">Content Repurposing</span>
+              <span class="skill-tag">Social Media Content Writing</span>
+              <span class="skill-tag">Link-in-Bio Strategy</span>
+              <span class="skill-tag">GAP Analysis</span>
+              <span class="skill-tag">Technical SEO</span>
+            </div>
+          </div>
+
+          <div class="skills-card">
+            <p class="skills-card-heading">Soft Skills</p>
+            <div class="soft-skills-list">
+              <div class="soft-skill-item"><span class="soft-skill-dot" aria-hidden="true"></span>Storytelling &amp; Emotional Connection</div>
+              <div class="soft-skill-item"><span class="soft-skill-dot" aria-hidden="true"></span>Strategic &amp; Creative Thinking</div>
+              <div class="soft-skill-item"><span class="soft-skill-dot" aria-hidden="true"></span>Research &amp; Attention to Detail</div>
+              <div class="soft-skill-item"><span class="soft-skill-dot" aria-hidden="true"></span>Adaptability</div>
+              <div class="soft-skill-item"><span class="soft-skill-dot" aria-hidden="true"></span>Communication &amp; Social Listening</div>
+              <div class="soft-skill-item"><span class="soft-skill-dot" aria-hidden="true"></span>Problem Solving</div>
+              <div class="soft-skill-item"><span class="soft-skill-dot" aria-hidden="true"></span>Time Management</div>
+              <div class="soft-skill-item"><span class="soft-skill-dot" aria-hidden="true"></span>Empathy</div>
+            </div>
+          </div>
 
         </div>
       </div>
