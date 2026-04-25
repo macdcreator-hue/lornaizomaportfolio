@@ -217,6 +217,19 @@ strong { font-weight: 600; color: var(--ink); }
 .tool-card:hover { transform: translateY(-4px); border-color: var(--lilac-300); box-shadow: var(--shadow-sm); }
 .tool-monogram { width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background-image: linear-gradient(135deg, #9B72C8, #6B4A9B); background-color: #9B72C8; color: var(--white); font-family: var(--font-body); font-weight: 700; font-size: 0.78rem; border-radius: var(--radius-sm); letter-spacing: 0.02em; }
 .tool-name { font-size: 0.78rem; font-weight: 600; color: var(--ink-light); line-height: 1.3; }
+.selected-work-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+@media (min-width: 640px) { .selected-work-grid { grid-template-columns: 1fr 1fr; } }
+.work-card { background: var(--white); border: 1px solid var(--lilac-100); border-radius: var(--radius-lg); padding: clamp(1.25rem, 4vw, 2rem); display: flex; flex-direction: column; gap: 0.85rem; transition: box-shadow var(--t), border-color var(--t), transform var(--t); }
+.work-card:hover { border-color: var(--lilac-300); box-shadow: 0 8px 32px rgba(155, 114, 200, 0.1); transform: translateY(-3px); }
+.work-card-type { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--lilac-600); }
+.work-card-title { font-family: var(--font-heading); font-size: clamp(1rem, 2.5vw, 1.15rem); font-weight: 700; color: var(--ink); line-height: 1.3; margin: 0; }
+.work-card-subtitle { display: inline-block; font-size: 0.75rem; font-weight: 600; color: var(--lilac-700); background-color: var(--lilac-50); border: 1px solid var(--lilac-200); padding: 0.28em 0.9em; border-radius: var(--radius-full); }
+.work-card-desc { font-size: 0.88rem; color: var(--ink-light); line-height: 1.75; flex: 1; }
+.work-card-links { display: flex; flex-wrap: wrap; gap: 0.6rem; padding-top: 0.5rem; border-top: 1px solid var(--lilac-100); margin-top: auto; }
+.work-link-view { display: inline-block; font-size: 0.82rem; font-weight: 600; color: var(--white); background-image: linear-gradient(135deg, #9B72C8, #6B4A9B); background-color: #9B72C8; padding: 0.5em 1.1em; border-radius: var(--radius-full); text-decoration: none; transition: opacity var(--t), transform var(--t); }
+.work-link-view:hover { opacity: 0.87; transform: translateY(-1px); }
+.work-link-raw { display: inline-block; font-size: 0.82rem; font-weight: 600; color: var(--lilac-700); border: 1px solid var(--lilac-200); background: transparent; padding: 0.5em 1.1em; border-radius: var(--radius-full); text-decoration: none; transition: background var(--t), color var(--t), border-color var(--t); }
+.work-link-raw:hover { background-color: var(--lilac-50); border-color: var(--lilac-400); }
 .timeline { position: relative; max-width: 740px; margin-inline: auto; padding-left: 1.75rem; }
 .timeline::before { content: ""; position: absolute; left: 0px; top: 8px; bottom: 8px; width: 2px; background-image: linear-gradient(to bottom, #C4A8E0, #EDE5FA); background-color: transparent; border-radius: 2px; }
 .timeline-item { position: relative; margin-bottom: 2.5rem; }
@@ -317,6 +330,7 @@ strong { font-weight: 600; color: var(--ink); }
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#proof-of-work" class="nav-link">Proof of Work</a></li>
         <li><a href="#tools" class="nav-link">Tools</a></li>
+        <li><a href="#selected-work" class="nav-link">Selected Work</a></li>
         <li><a href="#experience" class="nav-link">Experience</a></li>
         <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
         <li><a href="#work-with-me" class="nav-link nav-cta">Work With Me</a></li>
@@ -626,6 +640,81 @@ strong { font-weight: 600; color: var(--ink); }
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- ===================== SELECTED WORK ===================== -->
+    <section id="selected-work" class="section selected-work" aria-labelledby="selected-work-heading">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Portfolio</span>
+          <h2 id="selected-work-heading" class="section-heading">Proof of Work</h2>
+          <p class="section-sub">Selected projects — real briefs, real strategy, real deliverables.</p>
+        </header>
+
+        <div class="selected-work-grid">
+
+          <!-- Card 1: Beff GAP Analysis -->
+          <article class="work-card reveal">
+            <span class="work-card-type">GAP Analysis</span>
+            <h3 class="work-card-title">SEO &amp; Content Strategist — Beff</h3>
+            <span class="work-card-subtitle">Battery Technology Brand | B2B</span>
+            <p class="work-card-desc">Beff had deep technical expertise but zero online visibility. I conducted a full GAP analysis across their website and social media platforms, identifying critical issues. My recommendations covered structure all designed to make the brand discoverable, understandable, and engaging.</p>
+            <div class="work-card-links">
+              <a href="https://drive.google.com/file/d/1icgvE4CPGNNM4NHNIKD9VZY1lNdKruYn/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-view">View GAP Analysis &rarr;</a>
+              <a href="https://drive.google.com/file/d/1cCuyo_4trFwOme_gvCvpeAqoDXhC0M5x/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-raw">Raw Strategy</a>
+            </div>
+          </article>
+
+          <!-- Card 2: BlockChainX GAP Analysis -->
+          <article class="work-card reveal">
+            <span class="work-card-type">GAP Analysis</span>
+            <h3 class="work-card-title">SEO &amp; Content Strategist — BlockChainX</h3>
+            <span class="work-card-subtitle">Fintech &amp; Blockchain Brand | B2B</span>
+            <p class="work-card-desc">BlockChainX was building solutions for African merchants but struggling to communicate their value clearly. I conducted a comprehensive GAP analysis covering their website, LinkedIn, Instagram, Facebook, and Twitter. My recommendations targeted simplified messaging, on-page SEO, content diversification, and audience expansion.</p>
+            <div class="work-card-links">
+              <a href="https://drive.google.com/file/d/1zYVAgQyHxz8U_yPdVJ75uHJ7fxQWWkiZ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-view">View GAP Analysis &rarr;</a>
+              <a href="https://drive.google.com/file/d/1GLULGB8PgLC61SlEJxlok1iTDrk3anRt/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-raw">Raw Strategy</a>
+            </div>
+          </article>
+
+          <!-- Card 3: Handmaids38 Ad Copy -->
+          <article class="work-card reveal">
+            <span class="work-card-type">Ad Copy</span>
+            <h3 class="work-card-title">Ad Copy — Handmaids38</h3>
+            <span class="work-card-subtitle">Children's Luxury Fashion | Campaign: Rash-Free Summer Wear</span>
+            <p class="work-card-desc">Handmaids38 needed copy that spoke directly to a parent's heart. I crafted an Instagram ad campaign targeting mothers of young children during the hot season, leading with a real pain point (childhood heat rashes) and positioning the brand as the thoughtful, climate-smart solution.</p>
+            <div class="work-card-links">
+              <a href="https://drive.google.com/file/d/1nJOSWpcZuuE_1NnUPrBJ0i2wJ0jYojYP/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-view">View Ad Copy &rarr;</a>
+              <a href="https://drive.google.com/file/d/1p6ypZWeyc8L1ggBKXQzPr7vGNpCYiqyv/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-raw">Raw Strategy</a>
+            </div>
+          </article>
+
+          <!-- Card 4: Beff Website Copy -->
+          <article class="work-card reveal">
+            <span class="work-card-type">Website Copy</span>
+            <h3 class="work-card-title">Website Copy — Beff</h3>
+            <span class="work-card-subtitle">Battery Technology Brand | B2B</span>
+            <p class="work-card-desc">Beff needed website copy that made complex battery technology feel accessible and credible. I wrote and structured the full website; every page was crafted to guide a specific user toward a clear next action, while positioning Beff as the go-to AI-powered battery solutions platform.</p>
+            <div class="work-card-links">
+              <a href="https://drive.google.com/file/d/1b-QzRUQZ5-ppkhFee7WDEt6WBRQ9wqS0/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-view">View Website Copy &rarr;</a>
+              <a href="https://drive.google.com/file/d/1URBLldvR5GKM531SusujvMw1CamXCrZf/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-raw">Raw Strategy</a>
+            </div>
+          </article>
+
+          <!-- Card 5: M Hotel Content Strategy -->
+          <article class="work-card reveal">
+            <span class="work-card-type">Content Strategy</span>
+            <h3 class="work-card-title">Content Strategy — M Hotel</h3>
+            <span class="work-card-subtitle">Hospitality Brand | B2B &amp; B2C | Kigali</span>
+            <p class="work-card-desc">M Hotel needed a content strategy that showcased three distinct offerings. I built a full Instagram content strategy covering content pillars, a weekly content calendar, monthly themes, platform-specific hashtag strategy, audience targeting, and KPIs.</p>
+            <div class="work-card-links">
+              <a href="https://drive.google.com/file/d/1SEX_rby-Ay2xJX5om8KtFlPFwoXHFSr9/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-view">View Content Strategy &rarr;</a>
+              <a href="https://drive.google.com/file/d/1zFzUr4J48Pm_9nK5wXfQJmWU6YIhdGqx/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="work-link-raw">Raw Strategy</a>
+            </div>
+          </article>
+
+        </div>
       </div>
     </section>
 
