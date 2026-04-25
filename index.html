@@ -242,23 +242,28 @@ strong { font-weight: 600; color: var(--ink); }
 .timeline-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
 .timeline-points li { font-size: 0.9rem; color: var(--ink-light); line-height: 1.65; padding-left: 1.25em; position: relative; max-width: 100%; }
 .timeline-points li::before { content: "→"; position: absolute; left: 0px; color: var(--lilac-400); font-size: 0.82em; top: 0.1em; }
-.testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-@media (min-width: 768px) {
-  .testimonials-grid { grid-template-columns: 3fr 2fr; }
-}
-.testimonial-card { background: var(--white); border: 1px solid var(--lilac-100); border-radius: var(--radius-lg); padding: clamp(1.5rem, 4vw, 2.5rem); box-shadow: var(--shadow-sm); transition: box-shadow var(--t); }
-.testimonial-card:hover { box-shadow: var(--shadow-md); }
+.testimonials-carousel { position: relative; }
+.carousel-track-wrapper { overflow: hidden; border-radius: var(--radius-lg); }
+.carousel-track { display: flex; transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
+.testimonial-slide { min-width: 100%; box-sizing: border-box; }
+.testimonial-card { background: var(--white); border: 1px solid var(--lilac-100); border-radius: var(--radius-lg); padding: clamp(1.5rem, 5vw, 2.75rem); box-shadow: var(--shadow-sm); }
 .testimonial-quote-mark { font-family: var(--font-display); font-size: clamp(4rem, 10vw, 6rem); line-height: 0.75; color: var(--lilac-300); font-weight: 800; margin-bottom: 0.85rem; display: block; }
 .testimonial-quote-mark--muted { color: var(--lilac-100); }
 .testimonial-card blockquote { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
-.testimonial-card blockquote p { font-size: clamp(0.92rem, 2.5vw, 0.97rem); line-height: 1.8; color: var(--ink-light); font-style: italic; max-width: 100%; }
-.testimonial-author { display: flex; align-items: center; gap: 0.85rem; border-top: 1px solid var(--lilac-100); padding-top: 1.25rem; margin: 0px; }
+.testimonial-card blockquote p { font-size: clamp(0.92rem, 2.5vw, 1rem); line-height: 1.85; color: var(--ink-light); font-style: italic; max-width: 68ch; }
+.testimonial-author { display: flex; align-items: center; gap: 0.85rem; border-top: 1px solid var(--lilac-100); padding-top: 1.25rem; margin: 0; }
 .testimonial-avatar { width: 44px; height: 44px; min-width: 44px; border-radius: 50%; background-image: linear-gradient(135deg, #A982D4, #6B4A9B); background-color: #A982D4; color: var(--white); font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; }
 .testimonial-author-info { display: flex; flex-direction: column; gap: 0.1rem; }
 .testimonial-author-info strong { font-size: 0.93rem; color: var(--ink); }
 .testimonial-author-info span { font-size: 0.78rem; color: var(--ink-muted); }
-.testimonial-card--placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 180px; border: 2px dashed var(--lilac-200); box-shadow: none; gap: 0.5rem; }
-.testimonial-card--placeholder:hover { box-shadow: none; }
+.testimonial-card--placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 220px; border: 2px dashed var(--lilac-200); box-shadow: none; gap: 0.5rem; }
+.carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 1.75rem; }
+.carousel-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--lilac-200); background: var(--white); color: var(--lilac-600); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--t), border-color var(--t), color var(--t), transform var(--t); flex-shrink: 0; }
+.carousel-btn:hover { background: var(--lilac-500); border-color: var(--lilac-500); color: var(--white); transform: scale(1.08); }
+.carousel-btn:disabled { opacity: 0.35; cursor: default; transform: none; }
+.carousel-dots { display: flex; gap: 0.5rem; align-items: center; }
+.carousel-dot { width: 8px; height: 8px; border-radius: 50%; background-color: var(--lilac-200); border: none; cursor: pointer; padding: 0; transition: background var(--t), transform var(--t); }
+.carousel-dot.is-active { background-color: var(--lilac-500); transform: scale(1.35); }
 .placeholder-text { font-size: 0.9rem; color: var(--ink-muted); max-width: 100%; }
 .work-with-me { background-image: linear-gradient(135deg, #6B4A9B 0%, #4E3175 100%); background-color: #6B4A9B; position: relative; overflow: hidden; }
 .work-with-me::before { content: ""; position: absolute; top: -30%; right: -15%; width: min(500px, 80vw); height: min(500px, 80vw); background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%); background-color: transparent; pointer-events: none; }
@@ -784,29 +789,80 @@ strong { font-weight: 600; color: var(--ink); }
           <h2 id="testimonials-heading" class="section-heading">Don't Take My Word For It</h2>
         </header>
 
-        <div class="testimonials-grid">
+        <div class="testimonials-carousel reveal" id="testimonials-carousel" aria-label="Testimonials carousel">
 
-          <figure class="testimonial-card reveal">
-            <div class="testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
-            <blockquote>
-              <p>Lorna Izoma! She is really whatever or whoever she thinks she is. From the first onboarding call, I just knew she ATE.</p>
-              <p>This SEO Strategist did a gap analysis for a less visible battery firm. We were able to re-strategize and use new approaches. In two months we recorded massive change.</p>
-              <p>She doesn't deliver subpar content just because she wants to be seen as hardworking. She handles your business as though it's hers.</p>
-              <p>I, for one, have learned the storytelling part from her — she has astute and groundbreaking methods.</p>
-            </blockquote>
-            <figcaption class="testimonial-author">
-              <div class="testimonial-avatar" aria-hidden="true">B</div>
-              <div class="testimonial-author-info">
-                <strong>Beff</strong>
-                <span>Project Supervisor</span>
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="carousel-track" role="list">
+
+              <!-- Slide 1: Beff -->
+              <div class="testimonial-slide" role="listitem">
+                <figure class="testimonial-card">
+                  <div class="testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
+                  <blockquote>
+                    <p>Lorna Izoma! She is really whatever or whoever she thinks she is. From the first onboarding call, I just knew she ATE.</p>
+                    <p>This SEO Strategist did a gap analysis for a less visible battery firm. We were able to re-strategize and use new approaches. In two months we recorded massive change.</p>
+                    <p>She doesn't deliver subpar content just because she wants to be seen as hardworking. She handles your business as though it's hers.</p>
+                    <p>I, for one, have learned the storytelling part from her — she has astute and groundbreaking methods.</p>
+                  </blockquote>
+                  <figcaption class="testimonial-author">
+                    <div class="testimonial-avatar" aria-hidden="true">B</div>
+                    <div class="testimonial-author-info">
+                      <strong>Beff</strong>
+                      <span>Project Supervisor</span>
+                    </div>
+                  </figcaption>
+                </figure>
               </div>
-            </figcaption>
-          </figure>
 
-          <div class="testimonial-card testimonial-card--placeholder reveal">
-            <div class="testimonial-quote-mark testimonial-quote-mark--muted" aria-hidden="true">&ldquo;</div>
-            <p class="placeholder-text">More testimonials on the way.</p>
-            <span class="placeholder-badge">Coming Soon</span>
+              <!-- Slide 2: Negoncare -->
+              <div class="testimonial-slide" role="listitem">
+                <figure class="testimonial-card">
+                  <div class="testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
+                  <blockquote>
+                    <p>Working with Lorna on Negoncare's website was a turning point for our online presence.</p>
+                    <p>Within a short time, we saw a noticeable increase in calls and office visits.</p>
+                    <p>One of the most impressive outcomes was seeing our clinic show up in AI-driven search recommendations for &lsquo;ENT clinic in Festac.&rsquo;</p>
+                    <p>That level of visibility is incredibly valuable for a healthcare business like ours.</p>
+                  </blockquote>
+                  <figcaption class="testimonial-author">
+                    <div class="testimonial-avatar" aria-hidden="true">N</div>
+                    <div class="testimonial-author-info">
+                      <strong>Negoncare</strong>
+                      <span>CEO</span>
+                    </div>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <!-- Slide 3: Placeholder -->
+              <div class="testimonial-slide" role="listitem">
+                <div class="testimonial-card testimonial-card--placeholder">
+                  <div class="testimonial-quote-mark testimonial-quote-mark--muted" aria-hidden="true">&ldquo;</div>
+                  <p class="placeholder-text">More testimonials on the way.</p>
+                  <span class="placeholder-badge">Coming Soon</span>
+                </div>
+              </div>
+
+              <!-- Slide 4: Placeholder -->
+              <div class="testimonial-slide" role="listitem">
+                <div class="testimonial-card testimonial-card--placeholder">
+                  <div class="testimonial-quote-mark testimonial-quote-mark--muted" aria-hidden="true">&ldquo;</div>
+                  <p class="placeholder-text">More testimonials on the way.</p>
+                  <span class="placeholder-badge">Coming Soon</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="carousel-controls" aria-label="Carousel navigation">
+            <button class="carousel-btn" id="carousel-prev" aria-label="Previous testimonial">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Slide indicators"></div>
+            <button class="carousel-btn" id="carousel-next" aria-label="Next testimonial">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
 
         </div>
@@ -1037,6 +1093,54 @@ strong { font-weight: 600; color: var(--ink); }
       window.scrollTo({ top: offset, behavior: 'smooth' });
     });
   });
+
+})();
+
+  /* ── TESTIMONIALS CAROUSEL ── */
+  (function () {
+    const track = document.getElementById('carousel-track');
+    const dotsContainer = document.getElementById('carousel-dots');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    if (!track) return;
+
+    const slides = track.querySelectorAll('.testimonial-slide');
+    const total = slides.length;
+    let current = 0;
+
+    /* build dots */
+    slides.forEach(function (_, i) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.addEventListener('click', function () { goTo(i); });
+      dotsContainer.appendChild(dot);
+    });
+
+    function goTo(index) {
+      current = index;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dotsContainer.querySelectorAll('.carousel-dot').forEach(function (d, i) {
+        d.classList.toggle('is-active', i === current);
+      });
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    prevBtn.addEventListener('click', function () { if (current > 0) goTo(current - 1); });
+    nextBtn.addEventListener('click', function () { if (current < total - 1) goTo(current + 1); });
+
+    /* swipe support */
+    var touchStartX = 0;
+    track.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function (e) {
+      var diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { diff > 0 ? nextBtn.click() : prevBtn.click(); }
+    }, { passive: true });
+
+    goTo(0);
+  }());
 
 })();
   </script>
